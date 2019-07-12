@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/ads1018/next-apollo#readme",
   "files": [
-    "dist"
+    "src"
   ],
   "peerDependencies": {
     "@apollo/react-hooks": "0.1.0-beta.7",
