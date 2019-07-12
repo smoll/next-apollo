@@ -14,11 +14,16 @@ const createDefaultCache = () => new InMemoryCache()
 
 function create(apolloConfig, initialState) {
   const createCache = apolloConfig.createCache || createDefaultCache
+  const cache = createCache().restore(initialState || {})
+  if (apolloConfig.defaults) {
+    const data = apolloConfig.defaults
+    cache.writeData({ data })
+  }
 
   const config = {
     connectToDevTools: process.browser,
     ssrMode: !process.browser, // Disables forceFetch on the server (so queries are only run once)
-    cache: createCache().restore(initialState || {}),
+    cache,
     ...apolloConfig
   }
 
